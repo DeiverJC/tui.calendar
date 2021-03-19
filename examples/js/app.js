@@ -41,6 +41,7 @@
             console.log('clickDayname', date);
         },
         'beforeCreateSchedule': function(e) {
+            //var schedule = e.
             console.log('beforeCreateSchedule', e);
             saveNewSchedule(e);
         },
@@ -204,6 +205,8 @@
     function onNewSchedule() {
         var title = $('#new-schedule-title').val();
         var location = $('#new-schedule-location').val();
+        var body = $('new-schedule-body').val();
+        var phone = $('new-schedule-phone').val();
         var isAllDay = document.getElementById('new-schedule-allday').checked;
         var start = datePicker.getStartDate();
         var end = datePicker.getEndDate();
@@ -227,7 +230,9 @@
             dragBgColor: calendar.bgColor,
             borderColor: calendar.borderColor,
             raw: {
-                location: location
+                location: location,
+                body: body,
+                phone: phone,
             },
             state: 'Busy'
         }]);
@@ -280,6 +285,8 @@
             dragBgColor: calendar.bgColor,
             borderColor: calendar.borderColor,
             location: scheduleData.location,
+            body: scheduleData.body,
+            phone: scheduleData.phone,
             raw: {
                 class: scheduleData.raw['class']
             },

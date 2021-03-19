@@ -275,11 +275,11 @@ ScheduleCreationPopup.prototype._onClickSaveSchedule = function(target) {
         calendarId: this._selectedCal ? this._selectedCal.id : null,
         title: title,
         location: domutil.get(cssPrefix + 'schedule-location'),
+        body: domutil.get(cssPrefix + 'schedule-body'),
+        phone: domutil.get(cssPrefix + 'schedule-phone'),
         start: rangeDate.start,
         end: rangeDate.end,
-        isAllDay: isAllDay,
-        state: domutil.get(cssPrefix + 'schedule-state').innerText,
-        isPrivate: !domutil.hasClass(domutil.get(cssPrefix + 'schedule-private'), config.classname('public'))
+        isAllDay: isAllDay
     };
 
     if (this._isEditMode) {
@@ -338,7 +338,7 @@ ScheduleCreationPopup.prototype.render = function(viewModel) {
  */
 ScheduleCreationPopup.prototype._makeEditModeData = function(viewModel) {
     var schedule = viewModel.schedule;
-    var title, isPrivate, location, startDate, endDate, isAllDay, state;
+    var title, isPrivate, location, body, phone, startDate, endDate, isAllDay, state;
     var raw = schedule.raw || {};
     var calendars = this.calendars;
 
@@ -346,6 +346,8 @@ ScheduleCreationPopup.prototype._makeEditModeData = function(viewModel) {
     title = schedule.title;
     isPrivate = raw['class'] === 'private';
     location = schedule.location;
+    body = schedule.body;
+    phone = schedule.phone;
     startDate = schedule.start;
     endDate = schedule.end;
     isAllDay = schedule.isAllDay;
@@ -364,6 +366,8 @@ ScheduleCreationPopup.prototype._makeEditModeData = function(viewModel) {
         title: title,
         isPrivate: isPrivate,
         location: location,
+        body: body,
+        phone: phone,
         isAllDay: isAllDay,
         state: state,
         start: startDate,
@@ -708,11 +712,13 @@ ScheduleCreationPopup.prototype._getRangeDate = function(startDate, endDate, isA
 ScheduleCreationPopup.prototype._onClickUpdateSchedule = function(form) {
     var changes = common.getScheduleChanges(
         this._schedule,
-        ['calendarId', 'title', 'location', 'start', 'end', 'isAllDay', 'state'],
+        ['calendarId', 'title', 'location', 'body', 'phone', 'start', 'end', 'isAllDay', 'state'],
         {
             calendarId: form.calendarId,
             title: form.title.value,
             location: form.location.value,
+            body: form.body.value,
+            phone: form.phone.value,
             start: form.start,
             end: form.end,
             isAllDay: form.isAllDay,
@@ -762,6 +768,8 @@ ScheduleCreationPopup.prototype._onClickCreateSchedule = function(form) {
         calendarId: form.calendarId,
         title: form.title.value,
         location: form.location.value,
+        body: form.body.value,
+        phone: form.body.value,
         raw: {
             class: form.isPrivate ? 'private' : 'public'
         },

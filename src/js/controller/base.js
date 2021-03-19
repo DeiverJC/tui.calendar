@@ -275,6 +275,10 @@ Base.prototype.updateSchedule = function(schedule, options) {
         schedule.set('location', options.location);
     }
 
+    if (options.phone) {
+        schedule.set('phone', options.phone);
+    }
+
     if (options.state) {
         schedule.set('state', options.state);
     }

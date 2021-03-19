@@ -181,6 +181,7 @@ export interface ISchedule {
     category?: string;
     dueDateClass?: string;
     location?: string;
+    phone?: string;
     attendees?: string[];
     recurrenceRule?: string;
     isPending?: boolean;
