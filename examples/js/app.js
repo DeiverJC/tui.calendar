@@ -41,7 +41,13 @@
             console.log('clickDayname', date);
         },
         'beforeCreateSchedule': function(e) {
-            //var schedule = e.
+            console.log('Cliente', e.title);
+            console.log('Identificación', e.location);
+            console.log('Télefono', e.phone);
+            console.log('Asunto', e.body);
+            console.log('Fecha ini', e.start);
+            console.log('Fecha fin', e.end);
+            
             console.log('beforeCreateSchedule', e);
             saveNewSchedule(e);
         },

@@ -18,6 +18,26 @@ var tmpl = require('../template/popup/scheduleCreationPopup.hbs');
 var TZDate = timezone.Date;
 var MAX_WEEK_OF_MONTH = 6;
 
+DatePicker.localeTexts['lang.esp'] = {
+    titles: {
+        // days
+        DD: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+        // daysShort
+        D: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+        // months
+        MMMM: [
+            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        ],
+        // monthsShort
+        MMM: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
+    },
+    titleFormat: 'MMM yyyy',
+    todayFormat: 'D, MMMM dd, yyyy',
+    date: 'Fecha',
+    time: 'Hora'
+};
+
 /**
  * @constructor
  * @extends {View}
@@ -600,6 +620,7 @@ ScheduleCreationPopup.prototype._createDatepicker = function(start, end, isAllDa
     var cssPrefix = config.cssPrefix;
 
     this.rangePicker = DatePicker.createRangePicker({
+        language: 'lang.esp',
         startpicker: {
             date: new TZDate(start).toDate(),
             input: '#' + cssPrefix + 'schedule-start-date',
@@ -769,7 +790,7 @@ ScheduleCreationPopup.prototype._onClickCreateSchedule = function(form) {
         title: form.title.value,
         location: form.location.value,
         body: form.body.value,
-        phone: form.body.value,
+        phone: form.phone.value,
         raw: {
             class: form.isPrivate ? 'private' : 'public'
         },
